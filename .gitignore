@@ -1,0 +1,12 @@
+*
+
+!workers.properties
+!uriworkermap.properties
+!standalone.xml
+!standalone-ha.xml
+!true-tcp.cli
+!httpd.conf
+!apachectl
+!README.md
+!.gitignore
+!*/

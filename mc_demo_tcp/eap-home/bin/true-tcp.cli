@@ -1,0 +1,23 @@
+batch
+##  If  tcp  is already added then you can remove it  ##
+/subsystem=jgroups/stack=true-tcp:add(transport={"type" =>"TCP", "socket-binding" => "jgroups-tcp"})
+/subsystem=jgroups/stack=true-tcp/:add-protocol(type=TCPPING)
+/subsystem=jgroups/stack=true-tcp/:add-protocol(type=MERGE2)
+/subsystem=jgroups/stack=true-tcp/:add-protocol(type=FD_SOCK,socket-binding=jgroups-tcp-fd)
+/subsystem=jgroups/stack=true-tcp/:add-protocol(type=FD)
+/subsystem=jgroups/stack=true-tcp/:add-protocol(type=VERIFY_SUSPECT)
+/subsystem=jgroups/stack=true-tcp/:add-protocol(type=BARRIER)
+/subsystem=jgroups/stack=true-tcp/:add-protocol(type=pbcast.NAKACK)
+/subsystem=jgroups/stack=true-tcp/:add-protocol(type=UNICAST2)
+/subsystem=jgroups/stack=true-tcp/:add-protocol(type=pbcast.STABLE)
+/subsystem=jgroups/stack=true-tcp/:add-protocol(type=pbcast.GMS)
+/subsystem=jgroups/stack=true-tcp/:add-protocol(type=UFC)
+/subsystem=jgroups/stack=true-tcp/:add-protocol(type=MFC)
+/subsystem=jgroups/stack=true-tcp/:add-protocol(type=FRAG2)
+/subsystem=jgroups/stack=true-tcp/:add-protocol(type=RSVP)
+/subsystem=jgroups:write-attribute(name=default-stack,value=true-tcp)
+run-batch
+/subsystem=jgroups/stack=true-tcp/protocol=TCPPING/property=initial_hosts/:add(value="localhost[7600],localhost[7700]")
+/subsystem=jgroups/stack=true-tcp/protocol=TCPPING/property=port_range/:add(value=0)
+/subsystem=jgroups/stack=true-tcp/protocol=TCPPING/property=timeout/:add(value=3000)
+/subsystem=jgroups/stack=true-tcp/protocol=TCPPING/property=num_initial_members/:add(value=3)
